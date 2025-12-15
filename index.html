@@ -17,7 +17,11 @@
   <div class="nav-container">
     <h1 class="logo">E-Saver</h1>
 
-    <ul class="nav-links">
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">
+      <span class="hamburger" aria-hidden="true"></span>
+    </button>
+
+    <ul class="nav-links" id="site-navigation">
       <li><a href="#features">Features</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#screens">Screens</a></li>
@@ -302,6 +306,38 @@
 
     // observe reveals
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // responsive nav toggle + outside click close
+    const navToggle = document.querySelector('.nav-toggle');
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('.nav-links');
+    if(navToggle && navContainer){
+      navToggle.addEventListener('click', (e)=>{
+        const open = navContainer.classList.toggle('menu-open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // close when navigation link clicked
+      navLinks?.addEventListener('click',(e)=>{
+        if(e.target.tagName === 'A' && navContainer.classList.contains('menu-open')){
+          navContainer.classList.remove('menu-open');
+          navToggle.setAttribute('aria-expanded','false');
+        }
+      });
+
+      // close when clicking outside menu
+      document.addEventListener('click',(e)=>{
+        if(navContainer.classList.contains('menu-open')){
+          if(!navContainer.contains(e.target) && !navToggle.contains(e.target)){
+            navContainer.classList.remove('menu-open');
+            navToggle.setAttribute('aria-expanded','false');
+          }
+        }
+      });
+
+      // close on resize to desktop
+      window.addEventListener('resize', ()=>{ if(window.innerWidth > 900){ navContainer.classList.remove('menu-open'); navToggle.setAttribute('aria-expanded','false'); } });
+    }
 
     // small click feedback for download button
     const dl = document.getElementById('downloadBtn');

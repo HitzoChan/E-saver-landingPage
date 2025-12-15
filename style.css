@@ -9,7 +9,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; font-size:clamp(15px,1.4vw,16px)}
 
 body{
   font-family:Inter, system-ui;
@@ -69,6 +69,48 @@ body{
    display:inline-flex;
    align-items:center;
 }
+
+/* Mobile nav toggle */
+.nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
+.nav-toggle .hamburger{display:block;width:20px;height:2px;background:var(--muted);position:relative}
+.nav-toggle .hamburger:before,.nav-toggle .hamburger:after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--muted);transition:transform .22s ease}
+.nav-toggle .hamburger:before{top:-6px}
+.nav-toggle .hamburger:after{bottom:-6px}
+
+/* when open, convert to X */
+.nav-container.menu-open .hamburger{background:transparent}
+.nav-container.menu-open .hamburger:before{transform:translateY(6px) rotate(45deg)}
+.nav-container.menu-open .hamburger:after{transform:translateY(-6px) rotate(-45deg)}
+
+/* responsive breakpoints */
+@media (max-width:900px){
+  .nav-toggle{display:inline-flex}
+  .nav-links{display:none;position:absolute;top:62px;right:18px;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 50px rgba(2,6,10,0.6);min-width:180px}
+  .nav-container.menu-open .nav-links{display:flex}
+  .nav-links a{padding:8px 12px;display:block}
+
+  .hero{padding:80px 14px 60px}
+  .hero-text h2{font-size:clamp(22px,4.5vw,40px)}
+  .android-phone{width:260px;height:520px}
+  .android-phone img{border-radius:18px}
+  .download-cta{flex-direction:column;align-items:stretch}
+  .team-grid{gap:16px}
+  .team-card{padding:16px}
+  .avatar{width:56px;height:56px}
+}
+
+@media (max-width:480px){
+  .hero{padding:60px 12px 40px}
+  .hero-text h2{font-size:clamp(20px,6vw,32px)}
+  .android-phone{width:220px;height:420px}
+  .team-grid{grid-template-columns:1fr}
+  .profile-grid{grid-template-columns:1fr;gap:12px}
+  .profile-image{height:200px}
+  .nav-links{right:10px;left:10px;top:64px}
+}
+
+/* ensure responsive images */
+img{max-width:100%;height:auto;display:block}
 
 /* HERO */
 .hero{
