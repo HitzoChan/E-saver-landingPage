@@ -31,6 +31,7 @@ body{
 }
 
 .nav-container{
+  position:relative;
   max-width:1200px;
   margin:auto;
   padding:18px 24px;
@@ -85,7 +86,8 @@ body{
 /* responsive breakpoints */
 @media (max-width:900px){
   .nav-toggle{display:inline-flex}
-  .nav-links{display:none;position:absolute;top:62px;right:18px;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 50px rgba(2,6,10,0.6);min-width:180px}
+  .nav-links{display:none;position:absolute;top:62px;right:18px;flex-direction:column;gap:8px;background:linear-gradient(180deg, rgba(6,10,12,0.96), rgba(6,10,12,0.94));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 50px rgba(2,6,10,0.6);min-width:180px;z-index:220}
+  .nav-links a{color:#d9eef3}
   .nav-container.menu-open .nav-links{display:flex}
   .nav-links a{padding:8px 12px;display:block}
 
